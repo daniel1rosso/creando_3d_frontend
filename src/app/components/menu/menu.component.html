@@ -1,0 +1,70 @@
+<!-- Vertical navbar -->
+<div class="vertical-nav" id="sidebar" style="height: -webkit-fill-available">
+  <div class="container" style="padding: 0%">
+    <div
+      class="row col-12 align-items-center py-4 mb-4"
+      style="margin: 0%; background-color: rgba(255, 168, 128, 0.8)"
+    >
+      <div class="media d-flex">
+        <img
+          src="https://therichpost.com/wp-content/uploads/2020/06/avatar2.png"
+          alt="..."
+          width="65"
+          class="mr-3 rounded-circle img-thumbnail shadow-sm"
+        />
+      </div>
+      <div class="media-body" style="margin-left: 5%">
+        <b>{{ username }}</b>
+        <p class="font-weight-light mb-0" style="color: white;">¡Tus pedidos!</p>
+      </div>
+    </div>
+  </div>
+
+  <ul class="nav flex-column mb-0">
+    <li class="nav-item" id="nav-item">
+      <a routerLink="/panel" class="nav-link text-dark">
+        <fa-icon
+          [icon]="faAlignJustify"
+          style="padding-right: inherit; color: black"
+        ></fa-icon>
+        Menu Principal
+      </a>
+    </li>
+    <li class="nav-item" id="nav-item">
+      <a routerLink="/productos" class="nav-link text-dark">
+        <fa-icon
+          [icon]="faBox"
+          style="padding-right: inherit; color: black"
+        ></fa-icon>
+        Productos
+      </a>
+    </li>
+    <li class="nav-item" id="nav-item">
+      <a routerLink="/pedidos" class="nav-link text-dark">
+        <fa-icon
+          [icon]="faTrunk"
+          style="padding-right: inherit; color: black"
+        ></fa-icon>
+        Pedidos
+      </a>
+    </li>
+    <li class="nav-item" id="nav-item">
+      <a routerLink="/clientes" class="nav-link text-dark">
+        <fa-icon
+          [icon]="faUser"
+          style="padding-right: inherit; color: black"
+        ></fa-icon>
+        Clientes
+      </a>
+    </li>
+  </ul>
+
+  <div>
+    <a class="h-button centered" data-text="Cerrar Sesion" (click)="onLogOut()">
+      <span>¡Hasta Luego!</span>
+    </a>
+  </div>
+</div>
+<!-- End vertical navbar -->
+
+<!-- Page content holder -->

@@ -1,0 +1,115 @@
+.page-content {
+  width: calc(100% - 17rem);
+  margin-left: 17rem;
+  transition: all 0.4s;
+  padding-top: 9%;
+}
+
+#content.active {
+  width: 100%;
+  margin: 0;
+}
+.textoPrincipal{font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;}
+
+@media (max-width: 768px) {
+
+  #sidebar {
+    margin-left: -17rem;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #content {
+    width: 100%;
+    margin: 0;
+  }
+  #content.active {
+    margin-left: 17rem;
+    /*width: calc(100% - 17rem);*/
+    display: table-column-group;
+  }
+  .row{padding-left: 10%;}
+
+  .page-content{
+    padding-top: 20%;
+  }
+
+}
+@media (min-width: 768px){
+  .textoPrincipal{margin-left: 33%;}
+  .paginacion{
+    margin-top: 2%;
+    padding-left: 60%;
+  }
+}
+
+table {
+  width: 100%;
+  margin-top: 3%;
+  border: 0.2px solid rgb(177, 176, 176);
+}
+.tab{
+  font-family: Poppins-Regular, sans-serif;
+  text-align: center;
+}
+.button:hover{
+  text-decoration: none;
+  background: rgb(124, 30, 82);
+}
+.card:hover{
+  transition: all 0.4s ease;
+  -webkit-transform: scale(1.0);
+  -ms-transform: scale(1.0);
+  transform: scale(1.1);
+}
+.card{
+  cursor: pointer;
+}
+.card-stock:hover{background-color: #014069;}
+.card-venta:hover{background-color: rgb(0, 87, 0)}
+.card-costo:hover{background-color: #810000;}
+.card-stock{
+  background-color: #0868A8;
+  color: antiquewhite;
+}
+.card-venta{
+  background-color: green;
+  color: antiquewhite;
+}
+.card-costo{
+  color: antiquewhite;
+  background-color: #F50200;
+}
+
+.circulo_rojo{
+  width: 1%;
+  height: 1%;
+  padding: 10%;
+  background-color: #F50200;
+  color: #fff;
+  border-radius: 50%;
+  margin: 5px;
+  border: solid 1px #FFFCF9;
+}
+
+.circulo_amarillo{
+  width: 1%;
+  height: 1%;
+  padding: 10%;
+  background-color: yellow;
+  color: #fff;
+  border-radius: 50%;
+  margin: 5px;
+  border: solid 1px #FFFCF9;
+}
+
+.circulo_verde{
+  width: 1%;
+  height: 1%;
+  padding: 10%;
+  background-color: green;
+  color: #fff;
+  border-radius: 50%;
+  margin: 5px;
+  border: solid 1px #FFFCF9;
+}

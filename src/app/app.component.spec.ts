@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'creandoen3d'`, () => {
+  it(`should have as title 'creando_3d_frontend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('creandoen3d');
+    expect(app.title).toEqual('creando_3d_frontend');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('creandoen3d app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('creando_3d_frontend app is running!');
   });
 });

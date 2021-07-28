@@ -1,0 +1,64 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<div class="page-content" id="content" style="padding-bottom: 3%">
+  <div class="container">
+    <div class="row col-12 align-items-center producto" style="text-align: center">
+      <div class="col-sm-12">
+        <h1 class="textoPrincipal" style="text-align: center;display: contents;">Productos</h1>
+      </div>
+    </div>
+    <hr />
+
+    <div class="table-responsive">
+      <div class="table table-hover align-middle" class="table" cellspacing="0" width="100%">
+        <!-- Demo content -->
+        <table mat-table class="mat-elevation-z8 tab" id="tabla">
+          <thead class="table-info">
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Precio Compra</th>
+            <th>Ganancia</th>
+            <th>Precio Venta</th>
+            <th>Proveedor</th>
+            <th>Acciones</th>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let pr of productos | paginate: { itemsPerPage: 6, currentPage: p }; let i = index;">
+              <td>{{ pr.codigo }}</td>
+              <td>{{ pr.nombre }}</td>
+              <td>
+                <div style="display: flex;justify-content: center;"> {{ pr.cantidad }} <div
+                    *ngIf="pr.cantidad_stock>pr.cantidad" class="circulo_rojo"></div>
+                  <div *ngIf="pr.cantidad_stock < pr.cantidad" class="circulo_verde"></div>
+                  <div *ngIf="pr.cantidad_stock==pr.cantidad" class="circulo_amarillo"></div>
+                </div>
+              </td>
+              <td>{{ pr.costo }}</td>
+              <td>{{ pr.precio_venta - pr.costo }}</td>
+              <td>{{ pr.precio_venta }}</td>
+              <td>{{ pr.proveedor[0].nombre_empresa }}</td>
+              <td>
+                <button type="button" class="btn btn-outline-danger m-2" (click)="eliminarProducto(i, pr)">
+                  Eliminar
+                </button>
+                <button type="button" class="btn btn-outline-dark m-2" (click)="modificarProductoData(pr)">
+                  Modificar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h3 class="align-items-center" style="text-align: center; margin-top: 1%;" *ngIf="comprobacionTabla==false">No
+          existen registros en la sección {{seccion}}</h3>
+
+        <div class="col-12 text-align-center paginacion">
+          <pagination-controls (pageChange)="p = $event" previousLabel="Atras" nextLabel="Siguiente" maxSize="5"
+            responsive="true" autoHide="true"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

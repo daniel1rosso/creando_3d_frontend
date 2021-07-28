@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/creandoen3d'),
+      dir: require('path').join(__dirname, './coverage/creando_3d_frontend'),
       subdir: '.',
       reporters: [
         { type: 'html' },

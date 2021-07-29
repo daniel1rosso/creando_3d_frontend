@@ -28,6 +28,14 @@ import { MatPaginatorModule} from '@angular/material/paginator';
 
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 import { FilterPipeModule } from 'ngx-filter-pipe';
+import { NuevoClienteComponent } from './components/cliente/nuevo-cliente/nuevo-cliente/nuevo-cliente.component';
+import { ModificarClienteComponent } from './components/cliente/modificar-cliente/modificar-cliente/modificar-cliente.component';
+import { NuevoProductoComponent } from './components/producto/nuevo-producto/nuevo-producto/nuevo-producto.component';
+import { ModificarProductoComponent } from './components/producto/modificar-producto/modificar-producto/modificar-producto.component';
+import { NuevoPedidoComponent } from './components/pedido/nuevo-pedido/nuevo-pedido/nuevo-pedido.component';
+import { ModificarPedidoComponent } from './components/pedido/modificar-pedido/modificar-pedido/modificar-pedido.component';
+import { NuevoUsuarioComponent } from './components/usuario/nuevo-usuario/nuevo-usuario/nuevo-usuario.component';
+import { ModificarUsuarioComponent } from './components/usuario/modificar-usuario/modificar-usuario/modificar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +48,15 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
     MenuComponent,
     PedidoComponent,
     ProductoComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    NuevoClienteComponent,
+    ModificarClienteComponent,
+    NuevoProductoComponent,
+    ModificarProductoComponent,
+    NuevoPedidoComponent,
+    ModificarPedidoComponent,
+    NuevoUsuarioComponent,
+    ModificarUsuarioComponent
   ],
   imports: [
     MatPaginatorModule,

@@ -1,0 +1,68 @@
+<app-menu></app-menu>
+<app-header></app-header>
+<div class="page-content" id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 align-items-center" style="text-align: center;">
+        <h1 class="textoPrincipal">Nuevo Producto</h1>
+        <hr>
+      </div>
+    </div>
+  
+    <!-- Toggle button -->
+
+    <form #nuevo_producto="ngForm" (ngSubmit)="onSave(nuevo_producto.value)" novalidate>
+      <div class="form-group">
+        <label for="alto">Alto</label>
+        <input type="number" class="form-control" id="alto" name="alto" ngModel required>
+
+      </div>
+      <div class="form-group">
+        <label for="ancho">Ancho</label>
+        <input type="number" class="form-control" id="ancho" name="ancho" ngModel required>
+
+      </div>
+      <div class="form-group">
+        <label for="costo">Costo</label>
+        <input type="number" class="form-control" id="costo" name="costo" ngModel required>
+
+      </div>
+      <div class="form-group">
+        <label for="gramos">Gramos</label>
+        <input type="number" class="form-control" id="gramos" name="gramos" ngModel required>
+
+      </div>
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" ngModel required>
+
+      </div>
+      <div class="form-group">
+        <label for="precio">Precio Estimado</label>
+        <input type="number" class="form-control" id="precio" name="precio" ngModel required>
+
+      </div>
+      <div class="form-group">
+        <label for="tiempo">Tiempo</label>
+        <input type="number" class="form-control" id="tiempo" name="tiempo" ngModel required>
+
+      </div>
+
+
+      <div class="container col-12" style="margin-top: 4%;">
+        <div class="row" id="botones">
+          <div class="col-6">
+            <button type="submit" class="btn btn-primary float-right" [disabled]="!nuevo_producto.valid">Aceptar</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-danger" routerLink="/productos">Cancelar</button>
+          </div>
+        </div>
+
+
+      </div>
+
+    </form>
+  </div>
+  <app-footer></app-footer>
+

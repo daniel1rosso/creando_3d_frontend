@@ -1,30 +1,25 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { TokenService } from '../service/token.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
+import { AutenticacionService } from '../service/autenticacion.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProdGuardService implements CanActivate {
-  realRol: string = "";
+  constructor(private servicioAutenticacion: AutenticacionService,
+		private router : Router) { }
+	path: ActivatedRouteSnapshot[];
+	route: ActivatedRouteSnapshot;
 
-  constructor(
-    private tokenService: TokenService,
-    private router: Router
-  ) { }
-
-  canActivate(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): boolean {
-    const expectedRol = route.data.expectedRol;
-    const rol = this.tokenService.getAuthorities();
-    if (rol){
-      return true
-    }else {
-      this.router.navigate(['/']);
-      return false;
-    }
-
-
-  }
+	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+		let usuarioLogueado = this.servicioAutenticacion.usuarioLogueado;
+		if (usuarioLogueado && usuarioLogueado.authenticated) {
+			return true;
+		}
+		//obligamos a ir al login
+		this.router.navigate(['login']);
+		return false;
+	}
 
 }

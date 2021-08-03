@@ -18,13 +18,6 @@ export class HeaderComponent implements OnInit {
   }
 
   acomodarBoton(){
-    /*if(screen.width < 750){
-      if(document.getElementById("content").classList.contains("active")){
-        document.getElementById("botones").style.display = "flex";
-      } else{
-        document.getElementById("botones").style.display = "none";
-      }
-    }*/
     if('#sidebar == active'){
       $('#sidebar, #content').toggleClass('active');
       $('#sidebarCollapse').removeClass('activo');
@@ -33,9 +26,6 @@ export class HeaderComponent implements OnInit {
     }
 
     $('#sidebarCollapse').addClass('activo');
-    //VER COMO HACER PARA HACER PARA QUE EL BOTON FUNCIONE SIEMPRE
-
-
 
   }
 }

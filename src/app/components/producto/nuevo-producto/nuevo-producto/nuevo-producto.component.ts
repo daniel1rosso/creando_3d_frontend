@@ -10,6 +10,7 @@ export class NuevoProductoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
   onSave(data):void{

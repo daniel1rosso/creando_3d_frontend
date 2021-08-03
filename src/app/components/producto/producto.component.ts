@@ -26,9 +26,7 @@ export class ProductoComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService) { }
 
-  ngOnInit(): void {
-    this.calcularTarjetas();
-  }
+  ngOnInit(): void {}
 
   eliminarProducto(i, data) {
     Swal.fire({
@@ -43,7 +41,6 @@ export class ProductoComponent implements OnInit {
     then((result) => {
       if (result.isConfirmed) {
           this.productoService.eliminarProducto(data._id).subscribe((respuesta) => {
-            this.calcularTarjetas();
           this.productos.splice(i,1);
         });
         this.toastr.success('Eliminado con exito', 'Correcto', {timeOut: 2000, progressBar: true, closeButton: true})
@@ -56,26 +53,6 @@ export class ProductoComponent implements OnInit {
     })
   }
 
-  calcularTarjetas(): void{
-    this.productoService.get().subscribe((respuesta) => {
-      this.productos = respuesta;
-      if(this.productos.length<1){
-
-        this.comprobacionTabla = false;
-        $("#tabla").css('display','none');
-
-      } else{
-        this.comprobacionTabla = true;
-      }
-      respuesta.forEach(element => {
-        this.unidades_stock += parseInt(element.cantidad) ;
-        this.costo_total += parseInt(element.costo);
-        this.precio_venta += parseInt(element.precio_venta)
-      });
-
-    });
-
-  }
   modificarProductoData(data) {
     this.router.navigate(['/modificar-producto/' + data._id]);
   }

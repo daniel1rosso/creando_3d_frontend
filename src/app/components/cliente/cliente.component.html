@@ -7,9 +7,6 @@
       <div class="col-sm-12">
         <h1 class="textoPrincipal" style="text-align: center;display: contents;">Clientes</h1>
       </div>
-      <div class="col-sm-3 divButton">
-        <a routerLink="/nuevo-cliente" mat-raised-button class="button" color="primary">Nuevo Cliente</a>
-      </div>  
     </div>
     <hr>
     <div class="table-responsive">
@@ -17,13 +14,15 @@
         <!-- Demo content -->
         <table mat-table class="mat-elevation-z15 tab" name="tabla" id="tabla">
           <thead class="table-info">
-            <th>Codigo</th>
-            <th>Cliente</th>
+            <th>Apellido</th>
+            <th>Nombre</th>
+            <th>Contacto</th>
           </thead>
           <tbody>
             <tr *ngFor="let c of clientes | paginate: { itemsPerPage: 6, currentPage: p } ; let i = index">
-              <td>{{ c.codigo }}</td>
+              <td>{{ c.apellido }}</td>
               <td>{{ c.nombre }}</td>
+              <td>{{ c.contacto }}</td>
             </tr>
           </tbody>
         </table>

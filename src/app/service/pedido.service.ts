@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Pedido } from '../models/pedido/pedido.module';
 import { UrlService } from './url.service';
 
@@ -13,17 +14,17 @@ export class PedidoService {
 
   guardarPedido(pedido: any): Observable<any> {
 
-    return this._http.post(this._url.getURLBase() + '/pedido/new_pedido/',pedido );
+    return this._http.post(environment.url + 'pedido/new_pedido/',pedido );
   }
   get(): Observable<any> {
-    return this._http.get<Pedido[]>(this._url.getURLBase() + '/pedido/');
+    return this._http.get<any>(environment.url + 'pedido');
   }
 
   eliminarPedido(idPedido: number) {
-    return this._http.delete(this._url.getURLBase() + '/pedido/' + idPedido);
+    return this._http.delete(environment.url+ 'pedido/' + idPedido);
   }
 
   getPedido(idPedido: number): Observable<any> {
-    return this._http.get<Pedido[]>(this._url.getURLBase() + '/pedido/' + idPedido);
+    return this._http.get<any>(environment.url + 'pedido/' + idPedido);
   }
 }

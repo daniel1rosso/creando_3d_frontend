@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Producto } from '../models/producto/producto.module';
 import { UrlService } from './url.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -18,27 +19,27 @@ export class ProductoService {
   }
 
   getProducto(idProducto: number): Observable<any> {
-    return this._http.get<Producto[]>(this._url.getURLBase() + '/producto/' + idProducto);
+    return this._http.get<Producto[]>(environment.url+ '/producto/' + idProducto);
   }
 
   get(): Observable<any> {
-    return this._http.get<Producto[]>(this._url.getURLBase() + '/producto/');
+    return this._http.get<any>(environment.url + 'producto');
   }
 
   guardarProducto(producto: any): Observable<any> {
 
-    return this._http.post(this._url.getURLBase() + '/producto/new_producto',producto );
+    return this._http.post(environment.url + '/producto/new_producto',producto );
   }
 
   eliminarProducto(idProducto: number) {
-    return this._http.delete(this._url.getURLBase() + '/producto/' + idProducto);
+    return this._http.delete(environment.url + '/producto/' + idProducto);
   }
 
   modificarProducto(producto: any, idProducto: number): Observable<any> {
-    return this._http.put<any>(this._url.getURLBase() + '/producto/' + idProducto, producto);
+    return this._http.put<any>(environment.url+ '/producto/' + idProducto, producto);
   }
 
   notificaciones(): Observable<any> {
-    return this._http.post(this._url.getURLBase() + '/producto/productos_faltantes', "" );
+    return this._http.post(environment.url + '/producto/productos_faltantes', "" );
   }
 }

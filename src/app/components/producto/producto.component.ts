@@ -19,14 +19,26 @@ export class ProductoComponent implements OnInit {
   num = 0;
   p: number = 1;
   collection: any[] = [];
-  comprobacionTabla = false;
+  comprobacionTabla = true;
   seccion = "producto";
 
   constructor( private productoService: ProductoService,
     private router: Router,
     private toastr: ToastrService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.productoService.get().subscribe((respuesta) => {
+      this.productos = respuesta;
+      console.log(respuesta)
+      respuesta.forEach(element => {
+        this.unidades_stock += parseInt(element.cantidad) ;
+        this.costo_total += parseInt(element.costo);
+        this.precio_venta += parseInt(element.precio_venta)
+      });
+      
+    });
+
+  }
 
   eliminarProducto(i, data) {
     Swal.fire({

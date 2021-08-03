@@ -31,13 +31,7 @@
             <tr *ngFor="let pr of productos | paginate: { itemsPerPage: 6, currentPage: p }; let i = index;">
               <td>{{ pr.codigo }}</td>
               <td>{{ pr.nombre }}</td>
-              <td>
-                <div style="display: flex;justify-content: center;"> {{ pr.cantidad }} <div
-                    *ngIf="pr.cantidad_stock>pr.cantidad" class="circulo_rojo"></div>
-                  <div *ngIf="pr.cantidad_stock < pr.cantidad" class="circulo_verde"></div>
-                  <div *ngIf="pr.cantidad_stock==pr.cantidad" class="circulo_amarillo"></div>
-                </div>
-              </td>
+             
               <td>{{ pr.costo }}</td>
               <td>{{ pr.precio_venta - pr.costo }}</td>
               <td>{{ pr.precio_venta }}</td>

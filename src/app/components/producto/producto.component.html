@@ -8,7 +8,7 @@
       </div>
       <div class="col-sm-3 divButton">
         <a routerLink="/nuevo-producto" mat-raised-button class="button" color="primary">Nuevo Producto</a>
-      </div>  
+      </div>
     </div>
     <hr />
 
@@ -17,25 +17,27 @@
         <!-- Demo content -->
         <table mat-table class="mat-elevation-z8 tab" id="tabla">
           <thead class="table-info">
-            <th>Codigo</th>
             <th>Nombre</th>
-            <th>Cantidad</th>
-            <th>Precio Compra</th>
-            <th>Ganancia</th>
-            <th>Precio Venta</th>
-            <th>Proveedor</th>
+            <th>Alto</th>
+            <th>Ancho</th>
+            <th>Largo</th>
+            <th>Gramos</th>
+            <th>Precio Estimativo</th>
+            <th>Costo</th>
+            <th>Tiempo</th>
             <th>Acciones</th>
           </thead>
 
           <tbody>
             <tr *ngFor="let pr of productos | paginate: { itemsPerPage: 6, currentPage: p }; let i = index;">
-              <td>{{ pr.codigo }}</td>
               <td>{{ pr.nombre }}</td>
-             
+              <td>{{ pr.alto }}</td>
+              <td>{{ pr.ancho }}</td>
+              <td>{{ pr.largo }}</td>
+              <td>{{ pr.gramos }}</td>
+              <td>{{ pr.precio_estimativo }}</td>
               <td>{{ pr.costo }}</td>
-              <td>{{ pr.precio_venta - pr.costo }}</td>
-              <td>{{ pr.precio_venta }}</td>
-              <td>{{ pr.proveedor[0].nombre_empresa }}</td>
+              <td>{{ pr.tiempo }}</td>
               <td>
                 <button type="button" class="btn btn-outline-danger m-2" (click)="eliminarProducto(i, pr)">
                   Eliminar

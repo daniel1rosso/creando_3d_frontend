@@ -1,33 +1,21 @@
 export class Producto {
-  id:string;
-  nombre: string;
-  codigo :string;
-  cantidad : number;
-  despcripcion : string;
-  proveedor : string;
-  activo :number;
-  costo :number;
-  cantidad_stock: number;
-  precio_venta: number;
+  alto : Number
+  ancho :Number
+  costo : Number
+  gramos : Number
+  nombre : String
+  precio_estimativo : Number
+  tiempo : String
 
   constructor(
-    nombre: string,
-    codigo :string,
-    cantidad : number,
-    despcripcion : string,
-    proveedor : string,
-    activo :number,
-    costo :number,
-    cantidad_stock: number,
-    precio_venta: number){
-      this.nombre = nombre;
-      this.cantidad = cantidad;
-      this.codigo = codigo;
-      this.despcripcion = despcripcion;
-      this.proveedor = proveedor;
-      this.activo=activo;
-      this.costo = costo;
-      this.cantidad_stock = cantidad_stock;
-      this.precio_venta = precio_venta;
+    alto : Number,
+    ancho :Number,
+    costo : Number,
+    gramos : Number,
+    nombre : String,
+    precio_estimativo : Number,
+    tiempo : String
+    ){
+      this.alto = alto, this.ancho = ancho, this.costo = costo, this.gramos = gramos, this.nombre = nombre, this.precio_estimativo = precio_estimativo, this.tiempo = tiempo
     }
 }

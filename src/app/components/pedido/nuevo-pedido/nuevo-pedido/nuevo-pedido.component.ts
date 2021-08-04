@@ -1,4 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Cliente } from 'src/app/models/cliente/cliente.module';
+import { Color } from 'src/app/models/color/color.module';
+import { Estado } from 'src/app/models/estado/estado.module';
+import { Pedido } from 'src/app/models/pedido/pedido.module';
+import { Producto } from 'src/app/models/producto/producto.module';
+import { ClienteService } from 'src/app/service/cliente.service';
+import { ColorService } from 'src/app/service/color.service';
+import { EstadoService } from 'src/app/service/estado.service';
+import { PedidoService } from 'src/app/service/pedido.service';
+import { ProductoService } from 'src/app/service/producto.service';
 
 @Component({
   selector: 'app-nuevo-pedido',
@@ -6,12 +18,69 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nuevo-pedido.component.css']
 })
 export class NuevoPedidoComponent implements OnInit {
+  clientes:any = {};
+  estados:any = {};
+  productos:any = {};
+  colores:any = {};
+  pedido:any = {};
+  pedido_:any = {};
+  cliente: Cliente;
+  producto: Producto;
+  estado: Estado;
+  cantidad: Number;
+  color: Color;
+  fecha_entrega: Date;
+  precio: Number;
 
-  constructor() { }
+  constructor(
+    private clientesService: ClienteService,
+    private estadosService: EstadoService,
+    private productosService: ProductoService,
+    private coloresService: ColorService,
+    private pedidosService: PedidoService,
+    private router: Router,
+    private toastr: ToastrService,) { }
 
   ngOnInit(): void {
+    this.clientesService.get().subscribe((respuesta) => {
+      this.clientes = respuesta;
+    });
+    this.estadosService.get().subscribe((respuesta) => {
+      this.estados = respuesta;
+    });
+    this.productosService.get().subscribe((respuesta) => {
+      this.productos = respuesta;
+    });
+    this.coloresService.get().subscribe((respuesta) => {
+      this.colores = respuesta;
+    });
   }
-onSave(data):void {
-  
-}
+
+  calculoTotal(): void {
+    console.log(this.pedido_)
+    var precio = this.pedido_.producto.split("$")
+    console.log(parseFloat(precio[1]) * this.pedido_.cantidad)
+    $("#precio").val(parseFloat(precio[1]) * this.pedido_.cantidad);
+  }
+
+  onSave(data):void {
+    if (!data.valid){
+      this.cliente = data.cliente;
+      this.producto = data.producto;
+      this.estado = data.estado;
+      this.cantidad = data.cantidad
+      this.color = data.color;
+      this.fecha_entrega = data.fecha_entrega
+      this.precio = data.precio
+
+      this.pedido = new Pedido(this.cliente, this.producto, this.estado, this.cantidad, this.color, this.fecha_entrega, this.precio);
+      this.pedidosService.guardarPedido(this.pedido).subscribe((data) => {
+        this.toastr.success('Pedido '+ data.producto.nombre +' guardado correctamente.','Correcto', {closeButton: true});
+      });
+
+      this.router.navigate(['/pedidos']);
+    }else{
+      this.toastr.error('Por favor, revise los campos obligatorios ','Error');
+    }
+  }
 }

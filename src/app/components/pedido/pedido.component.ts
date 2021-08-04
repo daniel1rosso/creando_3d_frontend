@@ -31,24 +31,18 @@ export class PedidoComponent implements OnInit {
   ngOnInit(): void {
     this.pedidosService.get().subscribe((respuesta) => {
       this.pedido = respuesta;
-      console.log(this.pedido);
 
       if(this.pedido.length<1){
-
         this.comprobacionTabla = false;
         $("#tabla").css('display','none');
-
       } else{
         this.comprobacionTabla = true;
       }
     });
-
   }
 
   verVenta(data){
-
     this.router.navigate(['/ver-pedido/' + data._id]);
-
   }
 
   eliminarPedido(i,data) {

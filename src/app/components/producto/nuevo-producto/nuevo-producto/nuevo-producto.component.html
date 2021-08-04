@@ -8,7 +8,7 @@
         <hr>
       </div>
     </div>
-  
+
     <!-- Toggle button -->
 
     <form #nuevo_producto="ngForm" (ngSubmit)="onSave(nuevo_producto.value)" novalidate>
@@ -20,6 +20,11 @@
       <div class="form-group">
         <label for="ancho">Ancho</label>
         <input type="number" class="form-control" id="ancho" name="ancho" ngModel required>
+
+      </div>
+      <div class="form-group">
+        <label for="largo">Largo</label>
+        <input type="number" class="form-control" id="largo" name="largo" ngModel required>
 
       </div>
       <div class="form-group">
@@ -39,7 +44,7 @@
       </div>
       <div class="form-group">
         <label for="precio">Precio Estimado</label>
-        <input type="number" class="form-control" id="precio" name="precio" ngModel required>
+        <input type="number" class="form-control" id="precio_estimativo" name="precio_estimativo" ngModel required>
 
       </div>
       <div class="form-group">

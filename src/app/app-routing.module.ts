@@ -17,11 +17,11 @@ const routes: Routes = [
   {path: 'panel', component:DashboardComponent},
   {path: 'productos', component:ProductoComponent},
   {path: 'nuevo-producto', component:NuevoProductoComponent},
-  {path: 'modificar-producto', component:ModificarProductoComponent},
+  {path: 'modificar-producto/:_id', component:ModificarProductoComponent},
   {path: 'clientes', component:ClienteComponent},
   {path: 'pedidos', component:PedidoComponent },
   {path: 'nuevo-pedido', component:NuevoPedidoComponent },
-  {path: 'modificar-pedido', component:ModificarPedidoComponent },
+  {path: 'modificar-pedido/:_id', component:ModificarPedidoComponent },
   {path: '**', redirectTo: ""}
 ];
 

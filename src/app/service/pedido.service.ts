@@ -12,10 +12,10 @@ export class PedidoService {
   private pedido:Pedido[] = [];
   constructor(private _url : UrlService, private _http: HttpClient) { }
 
-  guardarPedido(pedido: any): Observable<any> {
-
-    return this._http.post(environment.url + 'pedido/new_pedido/',pedido );
+  guardarPedido(pedido: Pedido): Observable<any> {
+    return this._http.post(environment.url + 'pedido/guardar',pedido );
   }
+
   get(): Observable<any> {
     return this._http.get<any>(environment.url + 'pedido');
   }

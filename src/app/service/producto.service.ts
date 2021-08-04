@@ -19,7 +19,7 @@ export class ProductoService {
   }
 
   getProducto(idProducto: number): Observable<any> {
-    return this._http.get<Producto[]>(environment.url+ '/producto/' + idProducto);
+    return this._http.get<Producto[]>(environment.url+ 'producto/' + idProducto);
   }
 
   get(): Observable<any> {
@@ -27,19 +27,16 @@ export class ProductoService {
   }
 
   guardarProducto(producto: any): Observable<any> {
-
-    return this._http.post(environment.url + '/producto/new_producto',producto );
+    return this._http.post(environment.url + 'producto/guardar',producto );
   }
 
   eliminarProducto(idProducto: number) {
-    return this._http.delete(environment.url + '/producto/' + idProducto);
+    return this._http.delete(environment.url + 'producto/' + idProducto);
   }
 
   modificarProducto(producto: any, idProducto: number): Observable<any> {
-    return this._http.put<any>(environment.url+ '/producto/' + idProducto, producto);
-  }
-
-  notificaciones(): Observable<any> {
-    return this._http.post(environment.url + '/producto/productos_faltantes', "" );
+    console.log(idProducto)
+    console.log(producto)
+    return this._http.put<any>(environment.url + 'producto/' + idProducto, producto);
   }
 }

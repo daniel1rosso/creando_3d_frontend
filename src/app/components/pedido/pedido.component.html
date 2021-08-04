@@ -9,7 +9,7 @@
       </div>
       <div class="col-sm-3 divButton">
         <a routerLink="/nuevo-pedido" mat-raised-button class="button" color="primary">Nuevo Pedido</a>
-      </div>  
+      </div>
     </div>
     <hr>
     <div class="table-responsive">
@@ -17,13 +17,25 @@
         <!-- Demo content -->
         <table mat-table class="mat-elevation-z8 tab" id="tabla">
           <thead class="table-info">
-            <th>Codigo</th>
             <th>Cliente</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Color</th>
+            <th>Fecha Entrega</th>
+            <th>Precio</th>
+            <th>Estado</th>
+            <th>Acciones</th>
           </thead>
           <tbody>
             <tr *ngFor="let p of pedido | paginate: { itemsPerPage: 6, currentPage: p } ; let i = index">
-              <td>{{ p.cliente }}</td>
-              <td>{{ p.fecha }}</td>
+              <td>{{ p.cliente.apellido }}, {{ p.cliente.nombre }}</td>
+              <td>{{ p.producto.nombre }}</td>
+              <td>{{ p.cantidad }}</td>
+              <td>{{ p.color }}</td>
+              <td>{{ p.fecha_entrega }}</td>
+              <td>{{ p.precio }}</td>
+              <td>{{ p.estado.nombre }}</td>
+              <td></td>
             </tr>
           </tbody>
         </table>

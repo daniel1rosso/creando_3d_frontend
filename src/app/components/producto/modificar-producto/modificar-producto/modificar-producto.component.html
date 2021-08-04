@@ -1,3 +1,71 @@
-<app-header></app-header>
 <app-menu></app-menu>
-<app-footer></app-footer>
+<app-header></app-header>
+<div class="page-content" id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 align-items-center" style="text-align: center;">
+        <h1 class="textoPrincipal">Modificar Producto</h1>
+        <hr>
+      </div>
+    </div>
+
+    <!-- Toggle button -->
+
+    <form #modificar_producto="ngForm" (ngSubmit)="onEdit(modificar_producto.value)" novalidate>
+      <div class="form-group">
+        <label for="alto">Alto</label>
+        <input type="number" class="form-control" id="alto" name="alto" [ngModel] = "producto.alto" required>
+
+      </div>
+      <div class="form-group">
+        <label for="ancho">Ancho</label>
+        <input type="number" class="form-control" id="ancho" name="ancho" [ngModel] = "producto.ancho" required>
+
+      </div>
+      <div class="form-group">
+        <label for="largo">Largo</label>
+        <input type="number" class="form-control" id="largo" name="largo" [ngModel] = "producto.largo" required>
+
+      </div>
+      <div class="form-group">
+        <label for="costo">Costo</label>
+        <input type="number" class="form-control" id="costo" name="costo" [ngModel] = "producto.costo" required>
+
+      </div>
+      <div class="form-group">
+        <label for="gramos">Gramos</label>
+        <input type="number" class="form-control" id="gramos" name="gramos" [ngModel] = "producto.gramos" required>
+
+      </div>
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" [ngModel] = "producto.nombre" required>
+
+      </div>
+      <div class="form-group">
+        <label for="precio_estimativo">Precio Estimado</label>
+        <input type="number" class="form-control" id="precio_estimativo" name="precio_estimativo" [ngModel] = "producto.precio_estimativo" required>
+
+      </div>
+      <div class="form-group">
+        <label for="tiempo">Tiempo</label>
+        <input type="number" class="form-control" id="tiempo" name="tiempo" [ngModel] = "producto.tiempo" required>
+
+      </div>
+
+      <div class="container col-12" style="margin-top: 4%;">
+        <div class="row" id="botones">
+          <div class="col-6">
+            <button type="submit" class="btn btn-primary float-right" [disabled]="!modificar_producto.valid">Aceptar</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-danger" routerLink="/productos">Cancelar</button>
+          </div>
+        </div>
+
+
+      </div>
+
+    </form>
+  </div>
+  <app-footer></app-footer>

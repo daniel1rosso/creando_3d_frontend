@@ -29,13 +29,6 @@ export class ProductoComponent implements OnInit {
   ngOnInit(): void {
     this.productoService.get().subscribe((respuesta) => {
       this.productos = respuesta;
-      console.log(respuesta)
-      respuesta.forEach(element => {
-        this.unidades_stock += parseInt(element.cantidad) ;
-        this.costo_total += parseInt(element.costo);
-        this.precio_venta += parseInt(element.precio_venta)
-      });
-      
     });
 
   }
@@ -52,20 +45,18 @@ export class ProductoComponent implements OnInit {
     }).
     then((result) => {
       if (result.isConfirmed) {
-          this.productoService.eliminarProducto(data._id).subscribe((respuesta) => {
+          this.productoService.eliminarProducto(data.id).subscribe((respuesta) => {
           this.productos.splice(i,1);
         });
         this.toastr.success('Eliminado con exito', 'Correcto', {timeOut: 2000, progressBar: true, closeButton: true})
         if(this.productos.length<=1){
-          this.comprobacionTabla = false;
           $("#tabla").css('display','none');
         }
-
       }
     })
   }
 
   modificarProductoData(data) {
-    this.router.navigate(['/modificar-producto/' + data._id]);
+    this.router.navigate(['/modificar-producto/' + data.id]);
   }
 }

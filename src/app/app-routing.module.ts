@@ -12,16 +12,16 @@ import { NuevoPedidoComponent } from './components/pedido/nuevo-pedido/nuevo-ped
 import { ModificarPedidoComponent } from './components/pedido/modificar-pedido/modificar-pedido/modificar-pedido.component';
 
 const routes: Routes = [
-  {path: '', component:LoginComponent},
-  {path: 'login', component:LoginComponent},
-  {path: 'panel', component:DashboardComponent},
-  {path: 'productos', component:ProductoComponent},
-  {path: 'nuevo-producto', component:NuevoProductoComponent},
-  {path: 'modificar-producto/:_id', component:ModificarProductoComponent},
-  {path: 'clientes', component:ClienteComponent},
-  {path: 'pedidos', component:PedidoComponent },
-  {path: 'nuevo-pedido', component:NuevoPedidoComponent },
-  {path: 'modificar-pedido/:_id', component:ModificarPedidoComponent },
+  {path: '', component:LoginComponent}, 
+  {path: 'login', component:LoginComponent,canActivate : [ProdGuardService]},
+  {path: 'panel', component:DashboardComponent,canActivate : [ProdGuardService]},
+  {path: 'productos', component:ProductoComponent, canActivate : [ProdGuardService]},
+  {path: 'nuevo-producto', component:NuevoProductoComponent, canActivate : [ProdGuardService]},
+  {path: 'modificar-producto/:_id', component:ModificarProductoComponent,canActivate : [ProdGuardService]},
+  {path: 'clientes', component:ClienteComponent,canActivate : [ProdGuardService]},
+  {path: 'pedidos', component:PedidoComponent ,canActivate : [ProdGuardService]},
+  {path: 'nuevo-pedido', component:NuevoPedidoComponent,canActivate : [ProdGuardService] },
+  {path: 'modificar-pedido/:_id', component:ModificarPedidoComponent ,canActivate : [ProdGuardService]},
   {path: '**', redirectTo: ""}
 ];
 

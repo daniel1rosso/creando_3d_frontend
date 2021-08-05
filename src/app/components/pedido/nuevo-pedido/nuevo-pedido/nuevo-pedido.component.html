@@ -22,7 +22,7 @@
         <label for="cliente">Cliente</label>
         <select name="cliente" class="form-control" ngModel required>
             <option>Opciones ....</option>
-            <option *ngFor="let c of clientes">{{c.apellido}}, {{c.nombre}}</option>
+            <option *ngFor="let c of clientes"  [ngValue]="c">{{c.apellido}}, {{c.nombre}}</option>
       </select>
       </div>
 
@@ -30,14 +30,14 @@
         <label for="estado">Estado</label>
         <select name="estado" class="form-control" ngModel required>
             <option>Opciones ....</option>
-            <option *ngFor="let e of estados">{{e.nombre}}</option>
+            <option *ngFor="let e of estados" [ngValue]="e">{{e.nombre}}</option>
       </select>
       </div>
       <div class="form-group">
         <label for="producto">Producto</label>
         <select name="producto" class="form-control" required [(ngModel)]="pedido_.producto">
             <option>Opciones ....</option>
-            <option *ngFor="let p of productos">{{p.nombre}} - ${{p.precio_estimativo}}</option>
+            <option *ngFor="let p of productos" [ngValue]="p">{{p.nombre}} - ${{p.precio_estimativo}}</option>
         </select>
       </div>
       <div class="form-group">
@@ -47,15 +47,18 @@
       </div>
       <div class="form-group">
         <label for="precio">Precio</label>
-        <input type="number" class="form-control" id="precio" name="precio" ngModel required>
+        <input type="number" class="form-control" id="precio" name="precio"  [(ngModel)]="pedido_.precio">
 
       </div>
       <div class="form-group">
         <label for="color">Color</label>
+        <input type="text" class="form-control" name="color" ngModel>
+        <!-- 
         <select name="color" class="form-control" required>
             <option>Opciones ....</option>
             <option *ngFor="let c of colores">{{c.nombre}}</option>
         </select>
+        -->
       </div>
       <div class="container col-12" style="margin-top: 4%;">
         <div class="row" id="botones">

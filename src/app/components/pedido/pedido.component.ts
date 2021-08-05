@@ -41,10 +41,12 @@ export class PedidoComponent implements OnInit {
     });
   }
 
-  verVenta(data){
-    this.router.navigate(['/ver-pedido/' + data._id]);
+  modificarPedidoData(data){
+    this.router.navigate(['/modificar-pedido/' + data.id]);
   }
 
+
+  
   eliminarPedido(i,data) {
     Swal.fire({
       title: '¿Está seguro que  desea eliminar este pedido?',
@@ -57,7 +59,7 @@ export class PedidoComponent implements OnInit {
     }).
     then((result) => {
       if (result.isConfirmed) {
-          this.pedidosService.eliminarPedido(data._id).subscribe((respuesta) => {
+          this.pedidosService.eliminarPedido(data.id).subscribe((respuesta) => {
           this.pedido.splice(i,1);
         });
         this.toastr.success('Eliminado con exito', 'Correcto', {timeOut: 2000, progressBar: true, closeButton: true})

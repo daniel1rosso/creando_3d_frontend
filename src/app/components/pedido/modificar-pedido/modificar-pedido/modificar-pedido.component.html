@@ -1,3 +1,77 @@
-<app-header></app-header>
 <app-menu></app-menu>
-<app-footer></app-footer>
+<app-header></app-header>
+<div class="page-content" id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 align-items-center" style="text-align: center;">
+        <h1 class="textoPrincipal">Nuevo Pedido</h1>
+        <hr>
+      </div>
+    </div>
+
+    <!-- Toggle button -->
+
+    <form #modificar_pedido="ngForm" (ngSubmit)="onEdit(modificar_pedido.value)"  novalidate>
+
+      <div class="form-group">
+        <label for="fecha_entrega">Fecha Entrega</label>
+        <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" [ngModel]="pedido.fecha_entrega"  required>
+
+      </div>
+      <div class="form-group">
+        <label for="cliente">Cliente</label>
+        <select name="cliente" class="form-control" [ngModel]="pedido.cliente" required>
+            <option>Opciones ....</option>
+            <option *ngFor="let c of clientes"  [ngValue]="pedido.cliente">{{c.apellido}}, {{c.nombre}}</option>
+      </select>
+      </div>
+
+      <div class="form-group">
+        <label for="estado">Estado</label>
+        <select name="estado" class="form-control" [ngModel]="pedido.estado" required>
+            <option>Opciones ....</option>
+            <option *ngFor="let e of estados" [ngValue]="pedido.estado">{{e.nombre}}</option>
+      </select>
+      </div>
+      <div class="form-group">
+        <label for="producto">Producto</label>
+        <select name="producto" class="form-control" required [(ngModel)]="pedido.producto">
+            <option>Opciones ....</option>
+            <option *ngFor="let p of productos" [ngValue]="pedido.producto">{{p.nombre}} - ${{p.precio_estimativo}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="cantidad">Cantidad</label>
+        <input type="number" class="form-control" id="cantidad" name="cantidad" required (ngModelChange)="calculoTotal()" [ngModel]="pedido.cantidad"  >
+
+      </div>
+      <div class="form-group">
+        <label for="precio">Precio</label>
+        <input type="number" class="form-control" id="precio" name="precio"  [ngModel]="pedido.precio">
+
+      </div>
+      <div class="form-group">
+        <label for="color">Color</label>
+        <input type="text" class="form-control" name="color" [ngModel]="pedido.color">
+        <!-- 
+        <select name="color" class="form-control" required>
+            <option>Opciones ....</option>
+            <option *ngFor="let c of colores">{{c.nombre}}</option>
+        </select>
+        -->
+      </div>
+      <div class="container col-12" style="margin-top: 4%;">
+        <div class="row" id="botones">
+          <div class="col-6">
+            <button type="submit" class="btn btn-primary float-right" [disabled]="!modificar_pedido.valid">Aceptar</button>
+          </div>
+          <div class="col-6">
+            <button class="btn btn-danger" routerLink="/pedidos">Cancelar</button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <app-footer></app-footer>
+

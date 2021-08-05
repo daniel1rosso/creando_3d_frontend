@@ -35,9 +35,9 @@ export class NuevoProductoComponent implements OnInit {
       this.precio_estimativo = data.precio_estimativo
       this.tiempo = data.tiempo;
 
-      this.producto = new Producto(this.alto,this.ancho,this.costo,this.gramos,this.nombre,this.precio_estimativo, this.tiempo);
+      this.producto = new Producto(this.alto, this.ancho,this.largo, this.costo, this.gramos, this.nombre, this.precio_estimativo, this.tiempo );
       this.productoService.guardarProducto(this.producto).subscribe((data) => {
-        this.toastr.success('Producto '+ data.nombre +' guardado correctamente.','Correcto', {closeButton: true});
+        this.toastr.success('Producto '+ ' guardado correctamente.','Correcto', {closeButton: true});
       });
 
       this.router.navigate(['/productos']);

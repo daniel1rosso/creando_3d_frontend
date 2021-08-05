@@ -26,17 +26,16 @@ export class ProductoService {
     return this._http.get<any>(environment.url + 'producto');
   }
 
-  guardarProducto(producto: any): Observable<any> {
-    return this._http.post(environment.url + 'producto/guardar',producto );
+  guardarProducto(producto: any) {
+    return this._http.post(environment.url + 'producto',producto );
   }
 
-  eliminarProducto(idProducto: number) {
-    return this._http.delete(environment.url + 'producto/' + idProducto);
+  eliminarProducto(id: number) {
+    return this._http.delete(environment.url + 'producto/' + id);
   }
-
-  modificarProducto(producto: any, idProducto: number): Observable<any> {
-    console.log(idProducto)
-    console.log(producto)
-    return this._http.put<any>(environment.url + 'producto/' + idProducto, producto);
+  
+  modificarProducto(id:any, producto: any){
+    
+    return this._http.put(environment.url + 'producto/' + id, producto);
   }
 }

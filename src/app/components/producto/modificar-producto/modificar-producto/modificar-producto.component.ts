@@ -23,10 +23,11 @@ export class ModificarProductoComponent implements OnInit {
 
   constructor(private productoService :ProductoService, private toastr : ToastrService, private router :Router, private _activate : ActivatedRoute) {
     this._activate.params.subscribe((parametros) => {
-      this.id = parametros['_id'];
+      
       this.productoService.getProducto(parametros['_id']).subscribe((respuesta) => {
           this.producto = respuesta;
           console.log("--")
+          this.id =this.producto.id
           console.log(this.producto)
         });
     });
@@ -36,6 +37,7 @@ export class ModificarProductoComponent implements OnInit {
 
   onEdit(data){
     if (!data.valid){
+      console.log(data)
       this.alto = data.alto;
       this.ancho = data.ancho;
       this.largo = data.largo;
@@ -44,10 +46,12 @@ export class ModificarProductoComponent implements OnInit {
       this.nombre = data.nombre
       this.precio_estimativo = data.precio_estimativo
       this.tiempo = data.tiempo;
-
-      this.producto = new Producto(this.alto,this.ancho,this.costo,this.gramos,this.nombre,this.precio_estimativo, this.tiempo);
-      this.productoService.modificarProducto(this.producto, this.id).subscribe((data) => {
-       this.toastr.success('Producto '+ data.nombre +' modificado correctamente.','Correcto', {closeButton: true});
+      
+      this.producto = new Producto(this.alto, this.ancho,this.largo, this.costo, this.gramos, this.nombre, this.precio_estimativo, this.tiempo);
+      this.producto.id = this.id
+      console.log(this.producto)
+      this.productoService.modificarProducto(this.id, this.producto).subscribe((data) => {
+       this.toastr.success('Producto '+' modificado correctamente.','Correcto', {closeButton: true});
      });
 
      this.router.navigate(['/productos']);

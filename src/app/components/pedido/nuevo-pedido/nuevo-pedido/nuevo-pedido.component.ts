@@ -30,7 +30,7 @@ export class NuevoPedidoComponent implements OnInit {
   cantidad: Number;
   color: Color;
   fecha_entrega: Date;
-  precio: Number;
+  precio: Number = 0;
 
   constructor(
     private clientesService: ClienteService,
@@ -58,13 +58,16 @@ export class NuevoPedidoComponent implements OnInit {
 
   calculoTotal(): void {
     console.log(this.pedido_)
-    var precio = this.pedido_.producto.split("$")
-    console.log(parseFloat(precio[1]) * this.pedido_.cantidad)
-    $("#precio").val(parseFloat(precio[1]) * this.pedido_.cantidad);
+   
+    console.log(parseFloat(this.pedido_.producto.precio_estimativo) * this.pedido_.cantidad)
+    //$("#precio").val(parseFloat(this.pedido_.producto.precio) * this.pedido_.cantidad);
+    this.pedido_.precio= (parseFloat(this.pedido_.producto.precio_estimativo) * this.pedido_.cantidad);
+    
   }
 
   onSave(data):void {
     if (!data.valid){
+      console.log(data)
       this.cliente = data.cliente;
       this.producto = data.producto;
       this.estado = data.estado;
@@ -75,7 +78,7 @@ export class NuevoPedidoComponent implements OnInit {
 
       this.pedido = new Pedido(this.cliente, this.producto, this.estado, this.cantidad, this.color, this.fecha_entrega, this.precio);
       this.pedidosService.guardarPedido(this.pedido).subscribe((data) => {
-        this.toastr.success('Pedido '+ data.producto.nombre +' guardado correctamente.','Correcto', {closeButton: true});
+        this.toastr.success('Pedido ' +' guardado correctamente.','Correcto', {closeButton: true});
       });
 
       this.router.navigate(['/pedidos']);

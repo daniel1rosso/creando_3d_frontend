@@ -57,12 +57,9 @@ export class NuevoPedidoComponent implements OnInit {
   }
 
   calculoTotal(): void {
-    console.log(this.pedido_)
-   
     console.log(parseFloat(this.pedido_.producto.precio_estimativo) * this.pedido_.cantidad)
-    //$("#precio").val(parseFloat(this.pedido_.producto.precio) * this.pedido_.cantidad);
     this.pedido_.precio= (parseFloat(this.pedido_.producto.precio_estimativo) * this.pedido_.cantidad);
-    
+
   }
 
   onSave(data):void {

@@ -12,6 +12,9 @@
       </div>
     </div>
     <hr>
+    <div class="col-sm-3">
+      <input type="text" name="filtro" id="filtro" class="form-control" placeholder="Ingrese su búsqueda por color..."  (keyup)="filtrar($event)" formControlName="filtro">
+    </div>
     <div class="table-responsive">
       <div class="table table-hover align-middle" class="table" cellspacing="0" width="100%">
         <!-- Demo content -->
@@ -20,7 +23,7 @@
             <th>Cliente</th>
             <th>Producto</th>
             <th>Cantidad</th>
-            <th>Color</th>
+            <th scope="col" (click)="ordenar('color')">Color<span *ngIf="orderColorDesc"><fa-icon [icon]="icon"></fa-icon></span><span *ngIf="!orderColorDesc"><fa-icon [icon]="icon2"></fa-icon></span></th>
             <th>Fecha Entrega</th>
             <th>Precio</th>
             <th>Estado</th>

@@ -26,14 +26,13 @@ export class ModificarPedidoComponent implements OnInit {
     private coloresService: ColorService,
     private pedidosService: PedidoService,
     private router: Router,
-    private toastr: ToastrService, private _activate : ActivatedRoute) { 
+    private toastr: ToastrService, private _activate : ActivatedRoute) {
       this._activate.params.subscribe((parametros) => {
-      
+
         this.pedidosService.getPedido(parametros['_id']).subscribe((respuesta) => {
-            this.producto = respuesta;
-            console.log("--")
+            this.pedido = respuesta;
+            this.pedido.fecha_entrega = this.pedido.fecha_entrega.substring(0,10)
             this.id =this.pedido.id
-            console.log(this.producto)
           });
       });
     }
@@ -47,9 +46,9 @@ export class ModificarPedidoComponent implements OnInit {
     producto: Producto;
     estado: Estado;
     cantidad: Number;
-    
     fecha_entrega: Date;
     precio: Number = 0;
+
   ngOnInit(): void {
     this.clientesService.get().subscribe((respuesta) => {
       this.clientes = respuesta;
@@ -60,16 +59,11 @@ export class ModificarPedidoComponent implements OnInit {
     this.productosService.get().subscribe((respuesta) => {
       this.productos = respuesta;
     });
-   
+
   }
 
   calculoTotal(): void {
-    console.log(this.pedido_)
-   
-    console.log(parseFloat(this.pedido_.producto.precio_estimativo) * this.pedido_.cantidad)
-    //$("#precio").val(parseFloat(this.pedido_.producto.precio) * this.pedido_.cantidad);
     this.pedido_.precio= (parseFloat(this.pedido_.producto.precio_estimativo) * this.pedido_.cantidad);
-    
   }
 
   onEdit(data):void {
@@ -85,7 +79,7 @@ export class ModificarPedidoComponent implements OnInit {
 
       this.pedido = new Pedido(this.cliente, this.producto, this.estado, this.cantidad, this.color, this.fecha_entrega, this.precio);
       this.pedido.id = this.id
-      this.pedidosService.modificarPedido(this.pedido,this.id).subscribe((data) => {
+      this.pedidosService.modificarPedido(this.id, this.pedido).subscribe((data) => {
         this.toastr.success('Pedido ' +' guardado correctamente.','Correcto', {closeButton: true});
       });
 

@@ -24,10 +24,15 @@ export class PedidoService {
     return this._http.delete(environment.url+ 'pedido/' + idPedido);
   }
   modificarPedido(id:any, pedido: any){
-    
     return this._http.put(environment.url + 'pedido/' + id, pedido);
   }
   getPedido(id: number) {
     return this._http.get<any>(environment.url + 'pedido/' + id);
+  }
+  pedirPedidosFiltradosPorColor(filtro: string, orden?: string) {
+    if (orden) {
+      return this._http.get(environment.url + 'pedido?color=' + filtro +'&page=0' + '&sort=' + orden);
+    }
+    return this._http.get(environment.url + 'pedido/?color=' + filtro);
   }
 }

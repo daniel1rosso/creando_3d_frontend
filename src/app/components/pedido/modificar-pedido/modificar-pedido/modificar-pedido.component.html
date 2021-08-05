@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12 align-items-center" style="text-align: center;">
-        <h1 class="textoPrincipal">Nuevo Pedido</h1>
+        <h1 class="textoPrincipal">Modificar Pedido</h1>
         <hr>
       </div>
     </div>
@@ -52,13 +52,7 @@
       </div>
       <div class="form-group">
         <label for="color">Color</label>
-        <input type="text" class="form-control" name="color" [ngModel]="pedido.color">
-        <!-- 
-        <select name="color" class="form-control" required>
-            <option>Opciones ....</option>
-            <option *ngFor="let c of colores">{{c.nombre}}</option>
-        </select>
-        -->
+        <input type="text" class="form-control" id="color" name="color" [ngModel] = "pedido.color" required>
       </div>
       <div class="container col-12" style="margin-top: 4%;">
         <div class="row" id="botones">

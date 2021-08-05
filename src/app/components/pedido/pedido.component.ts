@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
+import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { PedidoService } from 'src/app/service/pedido.service';
 import Swal from 'sweetalert2';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,6 +18,10 @@ export class PedidoComponent implements OnInit {
   detallepedido:any[] = [];
   p: number = 1;
   collection: any[] = [];
+  filtro: any = ""
+  orderColorDesc: boolean
+  icon = faCaretUp;
+  icon2 = faCaretDown;
 
   comprobacionTabla = false;
   seccion = "pedidos";
@@ -45,8 +49,6 @@ export class PedidoComponent implements OnInit {
     this.router.navigate(['/modificar-pedido/' + data.id]);
   }
 
-
-  
   eliminarPedido(i,data) {
     Swal.fire({
       title: '¿Está seguro que  desea eliminar este pedido?',
@@ -69,6 +71,30 @@ export class PedidoComponent implements OnInit {
         }
       }
     })
+  }
 
+  filtrar(data){
+    this.filtro = data.target.value
+    this.filtrarImpl(data.target.value);
+  }
+
+  filtrarImpl(valor: string, orden?: string) {
+    this.pedidosService.pedirPedidosFiltradosPorColor(valor, orden).subscribe((rta: any) => {
+      console.log(rta);
+      if (rta && rta.content) {
+        this.pedido = rta.content;
+      } else {
+        this.pedido = rta;
+      }
+    }, (error) => {
+      console.log(error);
+    });
+   }
+
+   ordenar(estrategia: string) {
+    if (estrategia === 'color') {
+      this.orderColorDesc = !this.orderColorDesc;
+      this.filtrarImpl(this.filtro, this.orderColorDesc ? 'color,desc' : 'color,asc' );
+    }
   }
 }
